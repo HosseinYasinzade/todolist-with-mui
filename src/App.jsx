@@ -1,7 +1,9 @@
+import Login from "./Components/Login";
+
 function App() {
   return (
     <>
-      <p>Hello</p>
+      <Login />
     </>
   );
 }
