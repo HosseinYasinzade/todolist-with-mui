@@ -1,10 +1,14 @@
 import AppBars from "./AppBars";
+import LoginForm from "./LoginForm";
 
 const Login = () => {
   return (
-    <header>
-      <AppBars />
-    </header>
+    <>
+      <header>
+        <AppBars />
+      </header>
+      <LoginForm />
+    </>
   );
 };
 
