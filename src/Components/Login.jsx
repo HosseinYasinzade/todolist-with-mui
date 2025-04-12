@@ -5,7 +5,7 @@ const Login = () => {
   return (
     <>
       <header>
-        <AppBars />
+        <AppBars btnText="Register" />
       </header>
       <LoginForm />
     </>

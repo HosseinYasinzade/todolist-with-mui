@@ -4,14 +4,14 @@ import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
 import { Box } from "@mui/material";
 
-const AppBars = () => {
+const AppBars = ({ btnText }) => {
   return (
     <AppBar color="error">
       <Toolbar>
         <Typography variant="h4">Todo List</Typography>
         <Box sx={{ flexGrow: 1 }} />
         <Button variant="contained" color="success">
-          Register
+          {btnText}
         </Button>
       </Toolbar>
     </AppBar>

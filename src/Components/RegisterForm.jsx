@@ -1,6 +1,6 @@
 import { TextField, Button, Box, Stack, Paper } from "@mui/material";
 
-const LoginForm = () => {
+const RegisterForm = () => {
   return (
     <Box
       sx={{
@@ -27,8 +27,15 @@ const LoginForm = () => {
               required
               fullWidth
             />
+            <TextField
+              label="Password Again"
+              variant="outlined"
+              type="password"
+              required
+              fullWidth
+            />
             <Button type="submit" variant="contained" color="success" fullWidth>
-              Login
+              Register
             </Button>
           </Stack>
         </form>
@@ -37,4 +44,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default RegisterForm;
