@@ -44,6 +44,22 @@ const TodoList = () => {
     }
   };
 
+  const handleAdd = async (text) => {
+    try {
+      const maxId = todos.length > 0 ? Math.max(...todos.map((t) => t.id)) : 0;
+      const newTodo = {
+        id: maxId + 1,
+        todo: text,
+        action: "off",
+      };
+
+      const res = await axios.post("http://localhost:3000/todos", newTodo);
+      setTodos((prev) => [...prev, res.data]);
+    } catch (err) {
+      console.error("Error : ", err);
+    }
+  };
+
   return (
     <>
       <header>
@@ -76,7 +92,7 @@ const TodoList = () => {
               justifyContent: "center",
             }}
           >
-            <AddTodo />
+            <AddTodo onAdd={handleAdd} />
           </Box>
 
           <Todos
