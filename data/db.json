@@ -24,5 +24,22 @@
       "password": "Aa123",
       "role": "user"
     }
+  ],
+  "todos": [
+    {
+      "id": 1,
+      "todo": "Run",
+      "action": "on"
+    },
+    {
+      "id": 2,
+      "todo": "Learn React",
+      "action": "on"
+    },
+    {
+      "id": 3,
+      "todo": "Go University",
+      "action": "off"
+    }
   ]
 }

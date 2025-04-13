@@ -1,9 +1,21 @@
+import { useEffect, useState } from "react";
 import AppBars from "./AppBars";
 import { Box } from "@mui/material";
 import AddTodo from "./AddTodo";
 import Todos from "./Todos";
+import axios from "axios";
 
 const TodoList = () => {
+  const [todos, setTodos] = useState([]);
+
+  const user = JSON.parse(localStorage.getItem("user"));
+  const role = user?.role || "user";
+  useEffect(() => {
+    axios.get("http://localhost:3000/todos").then((res) => {
+      setTodos(res.data);
+    });
+  }, []);
+
   return (
     <>
       <header>
@@ -36,10 +48,10 @@ const TodoList = () => {
               justifyContent: "center",
             }}
           >
-            <AddTodo />
+            <AddTodo role={role} />
           </Box>
 
-          <Todos />
+          <Todos todos={todos} role={role} />
         </Box>
       </Box>
     </>
