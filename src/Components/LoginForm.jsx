@@ -21,6 +21,8 @@ const LoginForm = () => {
         const user = res.data[0];
         localStorage.setItem("user", JSON.stringify(user));
       }
+      setUsername("");
+      setPassword("");
     } catch (error) {
       console.error("Login error:", error);
     }
