@@ -1,8 +1,8 @@
-import { Paper, Checkbox, Button, Box, Typography } from "@mui/material";
+import { Paper, Box, Checkbox, Typography, Button } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 
-const Todos = ({ todos, role }) => {
+const Todos = ({ todos, role, onCheckboxChange }) => {
   const isAdmin = role === "admin";
 
   return (
@@ -17,7 +17,10 @@ const Todos = ({ todos, role }) => {
               gap: 1,
             }}
           >
-            <Checkbox defaultChecked={todo.action === "on"} />
+            <Checkbox
+              checked={todo.action === "on"}
+              onChange={(e) => onCheckboxChange(todo.id, e.target.checked)}
+            />
 
             <Typography variant="h6" sx={{ flexGrow: 1, minWidth: 100 }}>
               {todo.todo}
@@ -27,6 +30,7 @@ const Todos = ({ todos, role }) => {
               variant="contained"
               color="error"
               startIcon={<DeleteIcon />}
+              size="small"
               disabled={!isAdmin}
             >
               Delete
@@ -35,6 +39,7 @@ const Todos = ({ todos, role }) => {
               variant="contained"
               color="info"
               startIcon={<EditIcon />}
+              size="small"
               disabled={!isAdmin}
             >
               Edit

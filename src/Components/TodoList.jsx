@@ -1,20 +1,39 @@
-import { useEffect, useState } from "react";
 import AppBars from "./AppBars";
 import { Box } from "@mui/material";
 import AddTodo from "./AddTodo";
 import Todos from "./Todos";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 const TodoList = () => {
   const [todos, setTodos] = useState([]);
-
   const user = JSON.parse(localStorage.getItem("user"));
   const role = user?.role || "user";
+
   useEffect(() => {
-    axios.get("http://localhost:3000/todos").then((res) => {
-      setTodos(res.data);
-    });
+    axios
+      .get("http://localhost:3000/todos")
+      .then((res) => setTodos(res.data))
+      .catch((err) => console.error("خطا در دریافت تسک‌ها:", err));
   }, []);
+
+  const handleCheckboxChange = async (id, checked) => {
+    const updatedAction = checked ? "on" : "off";
+
+    try {
+      await axios.patch(`http://localhost:3000/todos/${id}`, {
+        action: updatedAction,
+      });
+
+      setTodos((prev) =>
+        prev.map((todo) =>
+          todo.id === id ? { ...todo, action: updatedAction } : todo
+        )
+      );
+    } catch (err) {
+      console.error("خطا در به‌روزرسانی:", err);
+    }
+  };
 
   return (
     <>
@@ -48,10 +67,14 @@ const TodoList = () => {
               justifyContent: "center",
             }}
           >
-            <AddTodo role={role} />
+            <AddTodo />
           </Box>
 
-          <Todos todos={todos} role={role} />
+          <Todos
+            todos={todos}
+            role={role}
+            onCheckboxChange={handleCheckboxChange}
+          />
         </Box>
       </Box>
     </>
