@@ -1,6 +1,13 @@
 import { useState } from "react";
 import axios from "axios";
-import { TextField, Button, Box, Stack, Paper } from "@mui/material";
+import {
+  TextField,
+  Button,
+  Box,
+  Stack,
+  Paper,
+  Typography,
+} from "@mui/material";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
@@ -41,6 +48,9 @@ const LoginForm = () => {
       <Paper elevation={3} sx={{ p: 5, width: 400 }}>
         <form onSubmit={handleSubmit}>
           <Stack spacing={2}>
+            <Typography variant="h5" align="center">
+              Login
+            </Typography>
             <TextField
               label="User Name"
               variant="outlined"
