@@ -8,10 +8,13 @@ import {
   Paper,
   Typography,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,6 +31,7 @@ const LoginForm = () => {
         const user = res.data[0];
         localStorage.setItem("user", JSON.stringify(user));
       }
+      navigate("/todos");
       setUsername("");
       setPassword("");
     } catch (error) {

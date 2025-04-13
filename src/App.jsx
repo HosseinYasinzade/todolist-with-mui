@@ -1,10 +1,18 @@
-// import Register from "./Components/Register";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Register from "./Components/Register";
+import Login from "./Components/Login";
 import TodoList from "./Components/TodoList";
 
 function App() {
   return (
     <>
-      <TodoList />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/todos" element={<TodoList />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
