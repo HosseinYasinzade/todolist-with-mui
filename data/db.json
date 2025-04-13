@@ -1,25 +1,25 @@
 {
   "users": [
     {
-      "id": "1",
+      "id": 1,
       "username": "admin",
       "password": "123",
       "role": "admin"
     },
     {
-      "id": "2",
+      "id": 2,
       "username": "Hossein",
       "password": "HY123",
       "role": "user"
     },
     {
-      "id": "3",
+      "id": 3,
       "username": "testUser",
       "password": "testTest",
       "role": "user"
     },
     {
-      "id": "4",
+      "id": 4,
       "username": "Amir",
       "password": "Aa123",
       "role": "user"
@@ -29,17 +29,7 @@
     {
       "id": "1",
       "todo": "Run",
-      "action": "on"
-    },
-    {
-      "id": "2",
-      "todo": "Learn React",
-      "action": "on"
-    },
-    {
-      "id": "3",
-      "todo": "Go University",
-      "action": "on"
+      "action": "off"
     }
   ]
 }

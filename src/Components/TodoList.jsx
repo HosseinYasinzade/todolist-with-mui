@@ -35,6 +35,15 @@ const TodoList = () => {
     }
   };
 
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:3000/todos/${id}`);
+      setTodos((prev) => prev.filter((todo) => todo.id !== id));
+    } catch (err) {
+      console.error("error: ", err);
+    }
+  };
+
   return (
     <>
       <header>
@@ -74,6 +83,7 @@ const TodoList = () => {
             todos={todos}
             role={role}
             onCheckboxChange={handleCheckboxChange}
+            onDelete={handleDelete}
           />
         </Box>
       </Box>
