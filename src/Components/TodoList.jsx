@@ -16,7 +16,7 @@ const TodoList = () => {
     axios
       .get("http://localhost:3000/todos")
       .then((res) => setTodos(res.data))
-      .catch((err) => console.error("خطا در دریافت تسک‌ها:", err));
+      .catch((err) => console.error("Error in fetch: ", err));
   }, []);
 
   const handleCheckboxChange = async (id, checked) => {
@@ -33,7 +33,7 @@ const TodoList = () => {
         )
       );
     } catch (err) {
-      console.error("خطا در به‌روزرسانی:", err);
+      console.error("Error to update: ", err);
     }
   };
 
