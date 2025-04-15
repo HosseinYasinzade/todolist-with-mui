@@ -2,7 +2,7 @@ import { Paper, Box, Checkbox, Typography, Button } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 
-const Todos = ({ todos, role, onCheckboxChange, onDelete }) => {
+const Todos = ({ todos, role, onCheckboxChange, onDelete, onEditClick }) => {
   const isAdmin = role === "admin";
 
   return (
@@ -41,7 +41,8 @@ const Todos = ({ todos, role, onCheckboxChange, onDelete }) => {
               color="info"
               startIcon={<EditIcon />}
               size="small"
-              disabled={!isAdmin}
+              onClick={() => onEditClick(todo)}
+              disabled={role !== "admin"}
             >
               Edit
             </Button>

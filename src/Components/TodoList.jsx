@@ -7,6 +7,8 @@ import axios from "axios";
 
 const TodoList = () => {
   const [todos, setTodos] = useState([]);
+  const [editTodo, setEditTodo] = useState(null);
+
   const user = JSON.parse(localStorage.getItem("user"));
   const role = user?.role || "user";
 
@@ -60,6 +62,29 @@ const TodoList = () => {
     }
   };
 
+  const handleEditSubmit = async (text) => {
+    try {
+      const updatedTodo = { ...editTodo, todo: text };
+
+      const res = await axios.put(
+        `http://localhost:3000/todos/${editTodo.id}`,
+        updatedTodo
+      );
+
+      setTodos((prev) =>
+        prev.map((todo) => (todo.id === editTodo.id ? res.data : todo))
+      );
+
+      setEditTodo(null);
+    } catch (err) {
+      console.error("Error: ", err);
+    }
+  };
+
+  const handleEditClick = (todo) => {
+    setEditTodo(todo);
+  };
+
   return (
     <>
       <header>
@@ -92,7 +117,11 @@ const TodoList = () => {
               justifyContent: "center",
             }}
           >
-            <AddTodo onAdd={handleAdd} />
+            <AddTodo
+              onAdd={handleAdd}
+              onEdit={handleEditSubmit}
+              editTodo={editTodo}
+            />
           </Box>
 
           <Todos
@@ -100,6 +129,7 @@ const TodoList = () => {
             role={role}
             onCheckboxChange={handleCheckboxChange}
             onDelete={handleDelete}
+            onEditClick={handleEditClick}
           />
         </Box>
       </Box>

@@ -1,15 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Box, TextField, Button } from "@mui/material";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
+import EditIcon from "@mui/icons-material/Edit";
 
-const AddTodo = ({ onAdd }) => {
+const AddTodo = ({ onAdd, onEdit, editTodo }) => {
   const [value, setValue] = useState("");
+
+  useEffect(() => {
+    if (editTodo) {
+      setValue(editTodo.username);
+    }
+  }, [editTodo]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!value.trim()) return;
 
-    onAdd(value.trim());
+    if (editTodo) {
+      onEdit(value.trim());
+    } else {
+      onAdd(value.trim());
+    }
+
     setValue("");
   };
 
@@ -28,11 +40,11 @@ const AddTodo = ({ onAdd }) => {
       <Button
         type="submit"
         variant="contained"
-        color="success"
-        startIcon={<AutoAwesomeIcon />}
+        color={editTodo ? "info" : "success"}
+        startIcon={editTodo ? <EditIcon /> : <AutoAwesomeIcon />}
         sx={{ width: { xs: "100%", sm: "200px" } }}
       >
-        Add
+        {editTodo ? "Edit" : "Add"}
       </Button>
     </form>
   );

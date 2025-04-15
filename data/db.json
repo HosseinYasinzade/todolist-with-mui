@@ -28,11 +28,11 @@
   "todos": [
     {
       "id": "1",
-      "todo": "Run",
+      "todo": "train js",
       "action": "off"
     },
     {
-      "id": 2,
+      "id": "2",
       "todo": "train react",
       "action": "off"
     }
